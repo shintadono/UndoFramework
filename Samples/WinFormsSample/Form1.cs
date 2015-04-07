@@ -99,7 +99,7 @@ namespace WinFormsSample
 		/// </summary>
 		void btnSetMany_Click(object sender, EventArgs e)
 		{
-			using(Transaction.Create(actionManager))
+			using(Transaction.Create(actionManager, "Set names"))
 			{
 				SetProperty("Name", "Joe");
 				SetProperty("Age", 30);

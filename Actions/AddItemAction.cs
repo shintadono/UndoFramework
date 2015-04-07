@@ -15,6 +15,14 @@ namespace UndoFramework
 		public Action<T> Remover { get; set; }
 		public T Item { get; set; }
 
+		public override string Name
+		{
+			get
+			{
+				return "Add item";
+			}
+		}
+
 		protected override void ExecuteCore()
 		{
 			Adder(Item);

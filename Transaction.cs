@@ -12,19 +12,22 @@ namespace UndoFramework
 		public bool AllowToMergeWithPrevious { get; set; }
 		public bool IsDelayed { get; set; }
 
-		Transaction(ActionManager actionManager, bool delayed)
+		public string Name {get; private set;}
+
+		Transaction(ActionManager actionManager, bool delayed, string name)
 		{
 			Actions=new List<IAction>();
 			ActionManager=actionManager;
 			actionManager.OpenTransaction(this);
 			IsDelayed=delayed;
+			Name=name;
 		}
 
-		public static Transaction Create(ActionManager actionManager, bool delayed)
+		public static Transaction Create(ActionManager actionManager, bool delayed, string name)
 		{
 			if(actionManager==null) throw new ArgumentNullException("actionManager");
 
-			return new Transaction(actionManager, delayed);
+			return new Transaction(actionManager, delayed, name);
 		}
 
 		/// <summary>
@@ -37,9 +40,9 @@ namespace UndoFramework
 		/// <example>
 		/// Recommended usage: using (Transaction.Create(actionManager)) { DoStuff(); }
 		/// </example>
-		public static Transaction Create(ActionManager actionManager)
+		public static Transaction Create(ActionManager actionManager, string name)
 		{
-			return Create(actionManager, true);
+			return Create(actionManager, true, name);
 		}
 
 		#region IAction implementation

@@ -15,12 +15,13 @@ namespace MinimalSample
 			actionManager.Undo();
 			Console.WriteLine("Old color again");
 
-			using(Transaction.Create(actionManager))
+			using(Transaction.Create(actionManager, "Change colors"))
 			{
 				SetConsoleColor(ConsoleColor.Red); // you never see Red
 				Console.WriteLine("Still didn't change to Red because of lazy evaluation");
 				SetConsoleColor(ConsoleColor.Blue);
 			}
+
 			Console.WriteLine("Changed two colors at once");
 
 			actionManager.Undo();
@@ -38,27 +39,5 @@ namespace MinimalSample
 		}
 
 		static ActionManager actionManager=new ActionManager();
-	}
-
-	class SetConsoleColorAction : AbstractAction
-	{
-		public SetConsoleColorAction(ConsoleColor newColor)
-		{
-			color=newColor;
-		}
-
-		ConsoleColor color;
-		ConsoleColor oldColor;
-
-		protected override void ExecuteCore()
-		{
-			oldColor=Console.ForegroundColor;
-			Console.ForegroundColor=color;
-		}
-
-		protected override void UnExecuteCore()
-		{
-			Console.ForegroundColor=oldColor;
-		}
 	}
 }

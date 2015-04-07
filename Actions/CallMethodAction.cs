@@ -13,6 +13,14 @@ namespace UndoFramework
 		public Action ExecuteDelegate { get; set; }
 		public Action UnexecuteDelegate { get; set; }
 
+		public override string Name
+		{
+			get
+			{
+				return "Call method";
+			}
+		}
+
 		protected override void ExecuteCore()
 		{
 			if(ExecuteDelegate!=null)

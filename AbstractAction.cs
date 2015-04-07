@@ -2,6 +2,8 @@ namespace UndoFramework
 {
 	public abstract class AbstractAction : IAction
 	{
+		public abstract string Name {get;}
+
 		protected int ExecuteCount { get; set; }
 
 		public virtual void Execute()

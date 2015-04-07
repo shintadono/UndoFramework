@@ -131,14 +131,14 @@ namespace UndoFramework
 		#endregion
 
 		#region Transactions
-		public Transaction CreateTransaction()
+		public Transaction CreateTransaction(string name)
 		{
-			return Transaction.Create(this);
+			return Transaction.Create(this, name);
 		}
 
-		public Transaction CreateTransaction(bool delayed)
+		public Transaction CreateTransaction(bool delayed, string name)
 		{
-			return Transaction.Create(this, delayed);
+			return Transaction.Create(this, delayed, name);
 		}
 
 		private Stack<Transaction> mTransactionStack=new Stack<Transaction>();

@@ -20,6 +20,14 @@ namespace UndoFramework
 		public object Value { get; set; }
 		public object OldValue { get; set; }
 
+		public override string Name
+		{
+			get
+			{
+				return "Set property";
+			}
+		}
+
 		protected override void ExecuteCore()
 		{
 			OldValue=Property.GetValue(ParentObject, null);

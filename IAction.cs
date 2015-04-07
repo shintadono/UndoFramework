@@ -9,6 +9,11 @@ namespace UndoFramework
 	public interface IAction
 	{
 		/// <summary>
+		/// Name of Action
+		/// </summary>
+		string Name { get; }
+
+		/// <summary>
 		/// Apply changes encapsulated by this object.
 		/// </summary>
 		/// <remarks>
